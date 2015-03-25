@@ -18,7 +18,11 @@
 
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
     <!-- endbuild -->
+
+    <link rel="import" href="/bower_components/video-js/video-js.html">
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -30,12 +34,20 @@
         <h3 class="text-muted">MPEG-DASH Proof of Concept Client</h3>
       </div>
 
-      <div class="jumbotron">
-        <video id="videoPlayer" controls="true" style="width: 100%;"></video>
-      </div>
+      <video id="videoPlayer" controls="true" style="width: 100%;">
+        <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'>
+      </video>
+
+      <video-js preload="false" controls="true">
+        <source src="http://54.201.151.65/livesim/tfdt_32/testpic_2s/Manifest.mpd" type='application/dash+xml' />
+        <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'>
+        <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
+        <p>test</p>
+      </video-js>
+
 
       <div class="footer">
-        <p>Francesco Pontillo</p>
+        <p>Francesco Pontillo / <a href="https://github.com/frapontillo">@frapontillo</a></p>
       </div>
     </div>
 
@@ -53,7 +65,6 @@
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
-    <script src="/bower_components/dash.js/dist/dash.debug.js"></script>
     <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
