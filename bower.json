@@ -4,8 +4,6 @@
   "dependencies": {
     "bootstrap-sass-official": "~3.3.1",
     "modernizr": "~2.8.1",
-    "dash.js": "git@github.com:Dash-Industry-Forum/dash.js.git#v1.3.0",
-    "webcomponentsjs": "~0.6.0",
-    "video-dash": "frapontillo/video-dash"
+    "webcomponentsjs": "~0.6.0"
   }
 }

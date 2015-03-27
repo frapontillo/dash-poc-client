@@ -34,12 +34,25 @@
         <h3 class="text-muted">MPEG-DASH Proof of Concept Client</h3>
       </div>
 
-      <video id="videoDash" is="video-dash" controls style="width: 100%;">
-        <source src="http://dash.edgesuite.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd" type='application/dash+xml'>
-        <source src="http://54.201.151.65/livesim/tfdt_32/testpic_2s/Manifest.mpd" type='application/dash+xml'>
-        <source src="stream/developerStories-en.webm" type='video/webm'>
-        <track src="stream/developerStories-subtitles-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
-        <track src="stream/developerStories-subtitles-it.vtt" label="Sottotitoli italiani" kind="subtitles" srclang="it">
+      <video id="videoDash" is="video-dash" preload controls style="width: 100%;">
+        <!--
+        -->
+        <source src="http://dash.edgesuite.net/digitalprimates/fraunhofer/480p_video/heaac_5_1_with_video/Sintel/sintel_480p_heaac5_1.mpd" type='application/dash+xml'>
+        <source src="stream/dash/sintel.mpd" type='application/dash+xml'>
+        <source src="stream/source/sintel-1080.webm" type="video/webm;codecs=vp8,vorbis" />
+        <source src="stream/source/sintel-720.webm" type="video/webm;codecs=vp8,vorbis" />
+        <source src="stream/source/sintel-640.webm" type="video/webm;codecs=vp8,vorbis" />
+        <source src="stream/source/sintel-320.webm" type="video/webm;codecs=vp8,vorbis" />
+        <source src="stream/source/sintel-1080.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src="stream/source/sintel-720.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src="stream/source/sintel-640.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src="stream/source/sintel-320.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
+        <track src="stream/track/sintel_en.vtt" label="English subtitles" kind="subtitles" srclang="en">
+        <track src="stream/track/sintel_it.vtt" label="Italian subtitles" kind="subtitles" srclang="it">
+        <track src="stream/track/sintel_de.vtt" label="German subtitles" kind="subtitles" srclang="de">
+        <track src="stream/track/sintel_es.vtt" label="Spanish subtitles" kind="subtitles" srclang="es">
+        <track src="stream/track/sintel_fr.vtt" label="French subtitles" kind="subtitles" srclang="fr">
+        <track src="stream/track/sintel_pt.vtt" label="Portuguese subtitles" kind="subtitles" srclang="pt">
       </video>
 
       <div class="footer">
