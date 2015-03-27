@@ -1,9 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>DASH PoC Client</title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -19,9 +20,8 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="/bower_components/video-dash/video-dash.html">
     <!-- endbuild -->
-
-    <link rel="import" href="/bower_components/video-js/video-js.html">
 
   </head>
   <body>
@@ -34,17 +34,13 @@
         <h3 class="text-muted">MPEG-DASH Proof of Concept Client</h3>
       </div>
 
-      <video id="videoPlayer" controls="true" style="width: 100%;">
-        <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'>
+      <video id="videoDash" is="video-dash" controls style="width: 100%;">
+        <source src="http://dash.edgesuite.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd" type='application/dash+xml'>
+        <source src="http://54.201.151.65/livesim/tfdt_32/testpic_2s/Manifest.mpd" type='application/dash+xml'>
+        <source src="stream/developerStories-en.webm" type='video/webm'>
+        <track src="stream/developerStories-subtitles-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
+        <track src="stream/developerStories-subtitles-it.vtt" label="Sottotitoli italiani" kind="subtitles" srclang="it">
       </video>
-
-      <video-js preload="false" controls="true">
-        <source src="http://54.201.151.65/livesim/tfdt_32/testpic_2s/Manifest.mpd" type='application/dash+xml' />
-        <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'>
-        <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
-        <p>test</p>
-      </video-js>
-
 
       <div class="footer">
         <p>Francesco Pontillo / <a href="https://github.com/frapontillo">@frapontillo</a></p>
