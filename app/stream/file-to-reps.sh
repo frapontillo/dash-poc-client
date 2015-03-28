@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mp4="-threads 16 -strict -2 -map 0 -c:v libx264 -c:a aac -c:s copy -f mp4"
-webm="-threads 16 -map 0 -c:v libvpx -qmin 0 -qmax 50 -crf 5 -b:v 1M -c:a libvorbis -c:s webvtt -f webm"
+webm="-threads 16 -map 0 -c:v libvpx -qmin 0 -qmax 50 -crf 5 -b:v 5M -c:a libvorbis -c:s webvtt -f webm"
   
 ffmpeg -i $1 $mp4 -vf scale=-1:1080 $2-1080p.mp4
 

@@ -1,98 +1,80 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" ng-app="dashPocClientApp">
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>DASH PoC Client</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-    <!-- build:css styles/vendor.css -->
+    <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
-
-    <!-- build:css styles/main.css -->
+    <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <!-- endbuild -->
 
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
-    <link rel="import" href="/bower_components/video-dash/video-dash.html">
-    <!-- endbuild -->
-
+    <link rel="import" href="bower_components/video-dash/video-dash.html">
   </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+  <body layout="column" layout-fill>
 
-    <div class="container">
-      <div class="header">
-        <h3 class="text-muted">MPEG-DASH Proof of Concept Client</h3>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>MPEG-DASH Proof of Concept</span>
+        <!-- fill up the space between left and right area -->
+        <span flex></span>
+        <md-button ng-href="https://github.com/frapontillo/video-dash" target="_blank" hide-sm>
+          <md-icon md-font-icon="fa fa-github" style="font-size: 1.2em;"></md-icon>
+          <span>frapontillo/video-dash</span>
+          <md-tooltip>
+            Read the source code
+          </md-tooltip>
+        </md-button>
       </div>
+    </md-toolbar>
 
-      <video id="videoDash" is="video-dash" preload controls style="width: 100%;">
-        <!--
-        -->
-        <source src="http://dash.edgesuite.net/digitalprimates/fraunhofer/480p_video/heaac_5_1_with_video/Sintel/sintel_480p_heaac5_1.mpd" type='application/dash+xml'>
-        <source src="stream/dash/sintel.mpd" type='application/dash+xml'>
-        <source src="stream/source/sintel-1080.webm" type="video/webm;codecs=vp8,vorbis" />
-        <source src="stream/source/sintel-720.webm" type="video/webm;codecs=vp8,vorbis" />
-        <source src="stream/source/sintel-640.webm" type="video/webm;codecs=vp8,vorbis" />
-        <source src="stream/source/sintel-320.webm" type="video/webm;codecs=vp8,vorbis" />
-        <source src="stream/source/sintel-1080.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
-        <source src="stream/source/sintel-720.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
-        <source src="stream/source/sintel-640.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
-        <source src="stream/source/sintel-320.mp4" type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'>
-        <track src="stream/track/sintel_en.vtt" label="English subtitles" kind="subtitles" srclang="en">
-        <track src="stream/track/sintel_it.vtt" label="Italian subtitles" kind="subtitles" srclang="it">
-        <track src="stream/track/sintel_de.vtt" label="German subtitles" kind="subtitles" srclang="de">
-        <track src="stream/track/sintel_es.vtt" label="Spanish subtitles" kind="subtitles" srclang="es">
-        <track src="stream/track/sintel_fr.vtt" label="French subtitles" kind="subtitles" srclang="fr">
-        <track src="stream/track/sintel_pt.vtt" label="Portuguese subtitles" kind="subtitles" srclang="pt">
-      </video>
+    <md-content ng-view flex class="md-padding"></md-content>
 
-      <div class="footer">
-        <p>Francesco Pontillo / <a href="https://github.com/frapontillo">@frapontillo</a></p>
-      </div>
-    </div>
+    <md-content layout="column" layout-align="start center">
+      <md-card style="width: 800px;">
+        <md-card-content>
+          <p class="md-caption">“Sintel” is licensed as Creative Commons Attribution 3.0. // <a href="https://durian.blender.org/">durian.blender.org</a></p>
+        </md-card-content>
+      </md-card>
+    </md-content>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-49037569-6');
+       ga('send', 'pageview');
     </script>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <!-- endbower -->
+    <!-- build:js(.) scripts/vendor.js -->
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbuild -->
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-        <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-        <!-- endbuild -->
-
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/directives/videodash.js"></script>
         <!-- endbuild -->
 </body>
 </html>
