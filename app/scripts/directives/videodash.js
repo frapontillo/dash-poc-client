@@ -15,7 +15,7 @@ angular.module('dashPocClientApp')
         track: '=',
         sources: '=',
         source: '=',
-        currentMetadata: '@'
+        metadata: '='
       },
       link: function postLink(scope, element, attrs) {
         var video = element[0];
@@ -26,6 +26,7 @@ angular.module('dashPocClientApp')
         }
 
         var updateTracks = function() {
+          // update the tracks
           scope.tracks = video.textTracks;
 
           if (!video.textTracks) {
@@ -52,7 +53,7 @@ angular.module('dashPocClientApp')
               // TODO: understand why it never enters here
               // "this" is a textTrack
               var cue = this.activeCues[0];
-              scope.currentMetadata = angular.fromJson(cue);
+              scope.metadata = angular.fromJson(cue.text);
               scope.$apply();
             };
           }
@@ -83,6 +84,9 @@ angular.module('dashPocClientApp')
         };
 
         var updateEnabledSource = function() {
+          if (!video.sourceTracks){
+            return;
+          }
           for (var index = 0; index < video.sourceTracks.length; index++) {
             if (video.sourceTracks[index].src === video.lastStreamSource) {
               scope.source = index;

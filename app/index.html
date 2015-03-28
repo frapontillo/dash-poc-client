@@ -6,16 +6,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
     <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <!-- endbuild -->
+
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
 
     <link rel="import" href="bower_components/video-dash/video-dash.html">
   </head>
@@ -39,11 +38,7 @@
     <md-content ng-view flex class="md-padding"></md-content>
 
     <md-content layout="column" layout-align="start center">
-      <md-card style="width: 800px;">
-        <md-card-content>
-          <p class="md-caption">“Sintel” is licensed as Creative Commons Attribution 3.0. // <a href="https://durian.blender.org/">durian.blender.org</a></p>
-        </md-card-content>
-      </md-card>
+      <p class="md-caption">“Sintel” is licensed as Creative Commons Attribution 3.0. // <a href="https://durian.blender.org/">durian.blender.org</a></p>
     </md-content>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -57,7 +52,6 @@
        ga('send', 'pageview');
     </script>
 
-    <!-- build:js(.) scripts/vendor.js -->
     <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -69,12 +63,10 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
-    <!-- endbuild -->
+    <script src="bower_components/angular-fullscreen/src/angular-fullscreen.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/directives/videodash.js"></script>
-        <!-- endbuild -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/directives/videodash.js"></script>
 </body>
 </html>

@@ -31,6 +31,8 @@ module.exports = function(config) {
       'bower_components/polymer/polymer.js',
       'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-fullscreen/src/angular-fullscreen.js',
+      'bower_components/video-dash/video-dash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

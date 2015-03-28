@@ -1,3 +1,52 @@
 // bower:scss
 // endbower
 
+$fa-font-path: '../bower_components/font-awesome/fonts';
+@import "../bower_components/font-awesome/scss/font-awesome";
+@import "icomoon";
+
+// specify relative position for the card in order to enable absolute positioning for children
+.video-container {
+  position: relative;
+  background: transparent;
+
+  .license-holder {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    .license {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .video-fullscreen {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    .button-fullscreen {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  *, *:-webkit-full-screen {
+    z-index: 9999999999;
+  }
+
+  video, video:-webkit-full-screen {
+    z-index: 1000;
+  }
+}
+
+md-icon[md-font-icon] .fa {
+  vertical-align: super;
+}

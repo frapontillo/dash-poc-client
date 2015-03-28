@@ -9,17 +9,17 @@
  */
 angular.module('dashPocClientApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.$watch('tracks', function(newVal) {
-      if (angular.isUndefined(newVal)) {
-        return;
-      }
-      // find out the metadata track
-      for (var i = 0; i < $scope.tracks.length; i++) {
-        if ($scope.tracks[i].kind === 'metadata') {
-          $scope.metadata = $scope.tracks[i];
-          $scope.metadata.mode = 'hidden';
-          break;
-        }
-      }
-    });
+    $scope.getShieldUrl = function(license) {
+      return 'https://img.shields.io/badge/license-' + license.replace(/-/g, '--') + '-lightgrey.svg?style=flat-square';
+    };
+
+    $scope.getLicenseUrl = function(license) {
+      return 'https://spdx.org/licenses/' + license;
+    };
+
+    $scope.isFullScreen = false;
+
+    $scope.toggleFullScreen = function() {
+      $scope.isFullScreen = !$scope.isFullScreen;
+    };
   });

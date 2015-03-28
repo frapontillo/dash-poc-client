@@ -1,21 +1,23 @@
 <div layout="column" layout-align="center center">
 
+  <!-- VIDEO CARD -->
   <md-card style="width: 800px;">
-    <md-card-content>
+    <div class="video-container" fullscreen="isFullScreen" id="fullscreen-target">
+
       <video id="videoDash" video-dash is="video-dash" preload controls poster="stream/source/poster.png"
-             tracks="tracks" sources="sources" track="track" source="source" style="width: 100%;">
+             tracks="tracks" sources="sources" track="track" source="source" metadata="metadata" style="width: 100%;">
         <!--
         <source
           src="http://dash.edgesuite.net/digitalprimates/fraunhofer/480p_video/heaac_5_1_with_video/Sintel/sintel_480p_heaac5_1.mpd"
           type='application/dash+xml'>
-        <source src="stream/dash/sintel.mpd" type='application/dash+xml'>
+        <source src="stream/dash/sintel.mpd" type='application/dash+xml'>-->
         <source src="stream/source/sintel-1080.webm" type="video/webm;codecs=vp8,vorbis"/>
-        <source src="stream/source/sintel-720.webm" type="video/webm;codecs=vp8,vorbis"/>
-        <source src="stream/source/sintel-640.webm" type="video/webm;codecs=vp8,vorbis"/>
-        <source src="stream/source/sintel-320.webm" type="video/webm;codecs=vp8,vorbis"/>-->
         <source src="stream/source/sintel-1080.mp4" type='video/mp4;codecs="avc1.42E01E,mp4a.40.2"'>
+        <source src="stream/source/sintel-720.webm" type="video/webm;codecs=vp8,vorbis"/>
         <source src="stream/source/sintel-720.mp4" type='video/mp4;codecs="avc1.42E01E,mp4a.40.2"'>
+        <source src="stream/source/sintel-640.webm" type="video/webm;codecs=vp8,vorbis"/>
         <source src="stream/source/sintel-640.mp4" type='video/mp4;codecs="avc1.42E01E,mp4a.40.2"'>
+        <source src="stream/source/sintel-320.webm" type="video/webm;codecs=vp8,vorbis"/>
         <source src="stream/source/sintel-320.mp4" type='video/mp4;codecs="avc1.42E01E,mp4a.40.2"'>
         <track src="stream/track/sintel_en.vtt" label="English subtitles" kind="subtitles" srclang="en">
         <track src="stream/track/sintel_it.vtt" label="Italian subtitles" kind="subtitles" srclang="it">
@@ -23,35 +25,166 @@
         <track src="stream/track/sintel_es.vtt" label="Spanish subtitles" kind="subtitles" srclang="es">
         <track src="stream/track/sintel_fr.vtt" label="French subtitles" kind="subtitles" srclang="fr">
         <track src="stream/track/sintel_pt.vtt" label="Portuguese subtitles" kind="subtitles" srclang="pt">
-        <track src="stream/track/sintel_copyright.vtt" label="Copyright information" kind="metadata" srclang="en" default>
+        <track src="stream/track/sintel_copyright.vtt" label="Copyright information" kind="metadata" default>
       </video>
+
+      <div class="license-holder">
+        <a class="license" ng-repeat="r in metadata.rights" ng-href="{{ getLicenseUrl(r) }}" target="_blank">
+          <img ng-src="{{ getShieldUrl(r) }}">
+        </a>
+      </div>
+
+      <div class="video-fullscreen">
+        <a class="button-fullscreen" ng-click="toggleFullScreen()" style="color: white; font-size: 20px;">
+          <md-icon ng-if="!isFullScreen" md-font-icon="icon icon-enlarge"></md-icon>
+          <md-icon ng-if="isFullScreen" md-font-icon="icon icon-shrink"></md-icon>
+        </a>
+      </div>
+    </div>
+
+    <md-card-content layout="row" layout-align="top center">
+      <!-- Video tracks -->
+      <md-input-container style="width: 380px;" layout-padding>
+        <md-select placeholder="Track" ng-model="track">
+          <md-select-label>{{ track >= 0 ? tracks.item(track).label : 'Video track' }}</md-select-label>
+          <md-option ng-value="$index" ng-repeat="t in tracks">{{ t.label || 'Track number ' + $index }}</md-option>
+        </md-select>
+        <md-button ng-click="track = -1" ng-disabled="track === -1">
+          <md-tooltip>
+            Disable the captions on the video
+          </md-tooltip>
+          Disable
+        </md-button>
+      </md-input-container>
+
+      <!-- Video sources -->
+      <md-input-container style="width: 380px;" layout-padding>
+        <md-select placeholder="Source" ng-model="source">
+          <md-select-label>{{ source >= 0 ? sources[source].src : 'Video source' }}</md-select-label>
+          <md-option ng-value="$index" ng-repeat="s in sources">{{ s.src || 'Source number ' + $index }}</md-option>
+        </md-select>
+      </md-input-container>
     </md-card-content>
   </md-card>
 
+  <!-- OAIS INFORMATION -->
   <md-card style="width: 800px;">
-    <md-card-content layout="row" layout-align="top center">
-        <!-- Video tracks -->
-        <md-input-container style="width: 380px;" layout-padding>
-          <md-select placeholder="Track" ng-model="track">
-            <md-select-label>{{ track >= 0 ? tracks.item(track).label : 'Video track' }}</md-select-label>
-            <md-option ng-value="$index" ng-repeat="t in tracks">{{ t.label || 'Track number ' + $index }}</md-option>
-          </md-select>
-          <md-button ng-click="track = -1" ng-disabled="track === -1">
-            <md-tooltip>
-              Disable the captions on the video
-            </md-tooltip>
-            Disable
-          </md-button>
-        </md-input-container>
+    <md-toolbar class="md-accent">
+      <h2 class="md-toolbar-tools">
+        <span>OAIS Information</span>
+      </h2>
+    </md-toolbar>
 
-        <!-- Video sources -->
-        <md-input-container style="width: 380px;" layout-padding>
-          <md-select placeholder="Source" ng-model="source">
-            <md-select-label>{{ source >= 0 ? sources[source].src : 'Video source' }}</md-select-label>
-            <md-option ng-value="$index" ng-repeat="s in sources">{{ s.src || 'Source number ' + $index }}</md-option>
-          </md-select>
-        </md-input-container>
-    </md-card-content>
+    <md-content>
+      <md-list>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Title</h3>
+              <p>{{metadata.title}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Creators</h3>
+              <p>{{metadata.creator.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Subjects</h3>
+              <p>{{metadata.subject.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Publishers</h3>
+              <p>{{metadata.publisher.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Contributors</h3>
+              <p>{{metadata.contributor.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Description</h3>
+              <p>{{metadata.description}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Date</h3>
+              <p>{{metadata.date | date:'shortDate'}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Types</h3>
+              <p>{{metadata.type.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Formats</h3>
+              <p>{{metadata.format.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>More information</h3>
+              <p>ID: {{metadata.identifier.join(', ')}}</p>
+              <p>Sources: {{metadata.source.join(', ')}}</p>
+              <p>Languages: {{metadata.language.join(', ')}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+        <md-item >
+          <md-item-content>
+            <div class="md-tile-content">
+              <h3>Rights</h3>
+              <p>
+                <span ng-repeat="r in metadata.rights">
+                  <md-button class="md-accent"
+                             ng-href="{{ getLicenseUrl(r) }}" target="_blank">{{r}}</md-button>
+                  {{ !$last ? ', ' : ''  }}
+                </span>
+              </p>
+            </div>
+          </md-item-content>
+        </md-item>
+      </md-list>
+    </md-content>
   </md-card>
 
 </div>

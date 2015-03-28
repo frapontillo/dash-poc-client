@@ -14,7 +14,10 @@
     "polymer": "Polymer/polymer#~0.5.5",
     "dash.js": "Dash-Industry-Forum/dash.js#~1.3.0",
     "angular-material": "master",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "IcoMoon-Free": "Keyamoon/IcoMoon-Free",
+    "angular-fullscreen": "~1.0.1",
+    "video-dash": "frapontillo/video-dash"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
